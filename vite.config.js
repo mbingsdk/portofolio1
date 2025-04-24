@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
-  server: {
-    port: 1234
-  },
-  base: "/portofolio1",
+  // server: {
+  //   port: 1234
+  // },
+  base: "/portofolio1/",
   plugins: [
     tailwindcss(),
   ],
