@@ -1,5 +1,0 @@
-Fitur UI/UX Mimetic yang Bisa Kita Pakai
-    🎨 Glassmorphism: semi-transparan + blur
-    🕹️ 3D Touch / Depth Hover: bayangan interaktif
-    🧩 Drag Element (pakai Framer Motion)
-    ✨ Transisi Halus: page-to-page pakai react-router + animasi
