@@ -1,0 +1,21 @@
+[
+    {
+      "title": "Website Portfolio",
+      "description": "Sebuah website pribadi untuk menampilkan proyek dan kontak.",
+      "image": "/assets/prt1.jpg",
+      "link": "#"
+    },
+    {
+      "title": "Aplikasi Toko",
+      "description": "Web aplikasi manajemen toko dan kasir.",
+      "image": "/assets/prt2.jpg",
+      "link": "#"
+    },
+    {
+      "title": "Aplikasi Chat",
+      "description": "Web aplikasi manajemen toko dan kasir.",
+      "image": "/assets/prt3.jpg",
+      "link": "#"
+    }
+  ]
+  
