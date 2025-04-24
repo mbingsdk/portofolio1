@@ -1,13 +1,21 @@
 // src/pages/Contact.jsx
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaInstagram, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
+import { FaWhatsapp, FaInstagram, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const socialMedia = [
   {
+    name: 'WhatsApp',
+    icon: <FaWhatsapp className="text-3xl text-green-500" />,
+    link: 'https://wa.me/message/Y357TXW37QACL1',
+    shadow_color: 'dark:shadow-green-500/30',
+    color: '',
+    // color: 'from-pink-400 to-yellow-500',
+  },
+  {
     name: 'Instagram',
     icon: <FaInstagram className="text-3xl text-pink-500" />,
-    link: 'https://instagram.com',
+    link: 'https://instagram.com/mbingsdk',
     shadow_color: 'dark:shadow-pink-500/30',
     color: '',
     // color: 'from-pink-400 to-yellow-500',
@@ -15,7 +23,7 @@ const socialMedia = [
   {
     name: 'GitHub',
     icon: <FaGithub className="text-3xl text-gray-800 dark:text-white" />,
-    link: 'https://github.com',
+    link: 'https://github.com/mbingsdk',
     shadow_color: 'dark:shadow-white/30',
     color: '',
     // color: 'from-gray-300 to-gray-600',

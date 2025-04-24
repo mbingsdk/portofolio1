@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Sun, Moon, Menu, X } from 'lucide-react';
+import { FaDemocrat } from "react-icons/fa";
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -10,7 +11,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
   return (
     <nav className="backdrop-blur-md bg-white/30 dark:bg-gray-800/30 border-b border-white/40 shadow-lg fixed w-full z-10 p-4 flex justify-between items-center rounded-b-xl">
-      <h1 className="text-xl font-bold">SDK-Dev</h1>
+      <h1 className="text-xl font-bold"><FaDemocrat /> SDK-Dev</h1>
       <div className="hidden md:flex items-center space-x-4">
         <Link to="/" className="hover:text-blue-600 dark:hover:text-yellow-400 transition">Home</Link>
         <Link to="/about" className="hover:text-blue-600 dark:hover:text-yellow-400 transition">About</Link>
