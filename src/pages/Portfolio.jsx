@@ -6,7 +6,7 @@ const Portfolio = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch('/projects.json')
+    fetch('/portofolio1/projects.json')
       .then((res) => res.json())
       .then((data) => setProjects(data))
       .catch((err) => console.error('Gagal memuat data project:', err));
