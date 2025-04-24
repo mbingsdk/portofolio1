@@ -12,7 +12,7 @@ const Home = () => {
       transition={{ duration: 0.7 }}
     >
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-10 md:p-16 max-w-2xl">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Halo, saya Adel 👋</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Halo, saya Mbing SDK 👋</h1>
         <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6">
           Pengembang web dan pecinta desain mimetic. Yuk jelajahi proyek dan hal-hal menarik lainnya!
         </p>
