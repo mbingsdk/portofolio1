@@ -1,2 +1,2 @@
 # WEBSITE PORTOFOLIO
-[MBING](https://mbingsdk.github.io/portofolio1/)
+[MBING](https://mbingsdk.my.id/)
