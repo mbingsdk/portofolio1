@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Website Portfolio",
+    "description": "Sebuah website pribadi untuk menampilkan proyek dan kontak.",
+    "image": "images/prt1.jpg",
+    "link": "https://github.com/mbingsdk/portofolio1"
+  },
+  {
+    "title": "Aplikasi Toko",
+    "description": "Web aplikasi manajemen toko dan kasir dengan fitur stok dan transaksi.",
+    "image": "images/prt2.jpg",
+    "link": "https://github.com/mbingsdk/portofolio1"
+  },
+  {
+    "title": "Aplikasi Chat",
+    "description": "Web aplikasi chat real-time menggunakan React, Node.js, dan Socket.IO.",
+    "image": "images/prt3.jpg",
+    "link": "https://github.com/mbingsdk/webchat"
+  }
+]
