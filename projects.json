@@ -2,19 +2,49 @@
   {
     "title": "Website Portfolio",
     "description": "Sebuah website pribadi untuk menampilkan proyek dan kontak.",
-    "image": "images/prt1.jpg",
-    "link": "https://github.com/mbingsdk/portofolio1"
+    "image": "images/proto.png",
+    "link": "https://mbingsdk.my.id"
   },
   {
-    "title": "Aplikasi Toko",
-    "description": "Web aplikasi manajemen toko dan kasir dengan fitur stok dan transaksi.",
-    "image": "images/prt2.jpg",
-    "link": "https://github.com/mbingsdk/portofolio1"
+    "title": "Hotspot",
+    "description": "Login page mikrotik hotspot + sistem coin + checkout via online payment/coin + Live chat.",
+    "image": "images/hotspot.png",
+    "link": "https://github.com/mbingsdk/sdkdev-hotspot"
   },
   {
-    "title": "Aplikasi Chat",
-    "description": "Web aplikasi chat real-time menggunakan React, Node.js, dan Socket.IO.",
-    "image": "images/prt3.jpg",
-    "link": "https://github.com/mbingsdk/webchat"
+    "title": "Website Mikcoins",
+    "description": "Web dashboard full menejemen hotsot dan sistem coin nya.",
+    "image": "images/mikcoins.png",
+    "link": "https://github.com/mbingsdk/Backend_Mikcoins"
+  },
+  {
+    "title": "Website Chord Guitar",
+    "description": "Web untuk yang suka main gitar tapi ga hapal chord, dan suka searching chord lagu.",
+    "image": "images/chord.png",
+    "link": "https://west.mbingsdk.my.id"
+  },
+  {
+    "title": "Website Discord Moderator Panel",
+    "description": "Web untuk menejemen discord server + bot, beberapa fitur for fun juga dari bot.",
+    "image": "images/discord.png",
+    "link": "https://discord.mbingsdk.my.id"
+  },
+  {
+    "title": "Web App Billing Reminder",
+    "description": "Web system autoreminder invoice due status, integrasi Accurate API dan WhatsApp Cloud API.",
+    "image": "images/hjmb.png",
+    "link": "https://app.hjmb.cloud"
+  },
+  {
+    "title": "Mini Blog Sastra",
+    "description": "Website limeng bocil yang hobinya seni rupa dan sastra, suka halu dan sangat aneh.",
+    "image": "images/limeng.png",
+    "link": "https://arsha.mbingsdk.my.id"
+  },
+  {
+    "title": "Marketplace Multi Vendor",
+    "description": "Aplikasi Marketplace versi UMKM, multi vendor dan support kurir lokal, Admin Dashboard, Verndor Dashboard, Customer Dashboard, Kurir Dashboard. Platform (Website dan Mobile).",
+    "image": "images/pxfuel (22).jpg",
+    "link": "https://github.com/mbingsdk/Multi-Vendor-Marketplace"
   }
 ]
