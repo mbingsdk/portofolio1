@@ -46,5 +46,11 @@
     "description": "Aplikasi Marketplace versi UMKM, multi vendor dan support kurir lokal, Admin Dashboard, Verndor Dashboard, Customer Dashboard, Kurir Dashboard. Platform (Website dan Mobile).",
     "image": "images/pxfuel (22).jpg",
     "link": "https://github.com/mbingsdk/Multi-Vendor-Marketplace"
+  },
+  {
+    "title": "Mikrotik Manager",
+    "description": "Web Aplikasi Mikrotik Manager, dengan fitur menejemen hotspot mendukung user template (mikhmon, mikhbotam, radius), PPPoE, Auto Generate VPN Remote dengan subdomain, Integrasi webhook dan Payment Gateway.",
+    "image": "images/Screenshot 2025-06-18 185845.png",
+    "link": "https://github.com/mbingsdk/mikmanager"
   }
 ]
