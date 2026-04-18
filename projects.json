@@ -52,5 +52,11 @@
     "description": "Web Aplikasi Mikrotik Manager, dengan fitur menejemen hotspot mendukung user template (mikhmon, mikhbotam, radius), PPPoE, Auto Generate VPN Remote dengan subdomain, Integrasi webhook dan Payment Gateway.",
     "image": "images/Screenshot 2025-06-18 185845.png",
     "link": "https://github.com/mbingsdk/mikmanager"
+  },
+  {
+    "title": "Sistem Administrasi Desa",
+    "description": "Web Aplikasi untuk kebutuhan Administrasi Desa/Kelurahaan, Fitur: Kependudukan dan Kartu Keluarga, Persuratan, dan Keuangan. Menggunakan Fullstack NextJS dan Python untuk AI Model API nya",
+    "image": "images/Screenshot 2026-04-19 022923.png",
+    "link": "https://demosad.mbingsdk.my.id"
   }
 ]
