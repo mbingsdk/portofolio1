@@ -58,5 +58,11 @@
     "description": "Web Aplikasi untuk kebutuhan Administrasi Desa/Kelurahaan, Fitur: Kependudukan dan Kartu Keluarga, Persuratan, dan Keuangan. Menggunakan Fullstack NextJS dan Python untuk AI Model API nya",
     "image": "images/Screenshot 2026-04-19 022923.png",
     "link": "https://demosad.mbingsdk.my.id"
+  },
+  {
+    "title": "Desktop App Weather Tracker",
+    "description": "Cuma aplikasi untuk deteksi cuaca di game, Eksperiment teknologi CNN Moddel dan OCR untuk deteksi jenis gambar dan baca teks pada layar. Mendeteksi jenis cuaca dan menghitung jede untuk cuaca selanjutnya, discord notifikasi, dll.",
+    "image": "images/Screenshot 2026-04-22 185732.png",
+    "link": "https://github.com/mbingsdk/MountSumbingCompanion/releases"
   }
 ]
