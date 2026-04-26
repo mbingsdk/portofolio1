@@ -64,5 +64,17 @@
     "description": "Cuma aplikasi untuk deteksi cuaca di game, Eksperiment teknologi CNN Moddel dan OCR untuk deteksi jenis gambar dan baca teks pada layar. Mendeteksi jenis cuaca dan menghitung jede untuk cuaca selanjutnya, discord notifikasi, dll.",
     "image": "images/Screenshot 2026-04-22 185732.png",
     "link": "https://github.com/mbingsdk/MountSumbingCompanion/releases"
+  },
+  {
+    "title": "Mobile App Weather Tracker",
+    "description": "Ini versi mobile, konsep sama.",
+    "image": "images/Screenshot 2026-04-25 032128.png",
+    "link": "https://github.com/mbingsdk/SumbingAPK"
+  },
+  {
+    "title": "Web App Toko Bunga",
+    "description": "Gabungan dari Landing Page, Web Store, dan berbagai fitur admin, sampai ke komposisi dan sistem administrasi",
+    "image": "images/Screenshot 2026-04-25 194944.png",
+    "link": "https://github.com/mbingsdk/pelower"
   }
 ]
