@@ -1,0 +1,80 @@
+[
+  {
+    "title": "Website Portfolio",
+    "description": "Sebuah website pribadi untuk menampilkan proyek dan kontak.",
+    "image": "images/porto.png",
+    "link": "https://mbingsdk.my.id"
+  },
+  {
+    "title": "Hotspot",
+    "description": "Login page mikrotik hotspot + sistem coin + checkout via online payment/coin + Live chat.",
+    "image": "images/hotspot.png",
+    "link": "https://github.com/mbingsdk/sdkdev-hotspot"
+  },
+  {
+    "title": "Website Mikcoins",
+    "description": "Web dashboard full menejemen hotsot dan sistem coin nya.",
+    "image": "images/mikcoins.png",
+    "link": "https://github.com/mbingsdk/Backend_Mikcoins"
+  },
+  {
+    "title": "Website Chord Guitar",
+    "description": "Web untuk yang suka main gitar tapi ga hapal chord, dan suka searching chord lagu.",
+    "image": "images/chord.png",
+    "link": "https://west.mbingsdk.my.id"
+  },
+  {
+    "title": "Website Discord Moderator Panel",
+    "description": "Web untuk menejemen discord server + bot, beberapa fitur for fun juga dari bot.",
+    "image": "images/discord.png",
+    "link": "https://discord.mbingsdk.my.id"
+  },
+  {
+    "title": "Web App Billing Reminder",
+    "description": "Web system autoreminder invoice due status, integrasi Accurate API dan WhatsApp Cloud API.",
+    "image": "images/hjmb.png",
+    "link": "https://app.hjmb.cloud"
+  },
+  {
+    "title": "Mini Blog Sastra",
+    "description": "Website limeng bocil yang hobinya seni rupa dan sastra, suka halu dan sangat aneh.",
+    "image": "images/limeng.png",
+    "link": "https://arsha.mbingsdk.my.id"
+  },
+  {
+    "title": "Marketplace Multi Vendor",
+    "description": "Aplikasi Marketplace versi UMKM, multi vendor dan support kurir lokal, Admin Dashboard, Verndor Dashboard, Customer Dashboard, Kurir Dashboard. Platform (Website dan Mobile).",
+    "image": "images/pxfuel (22).jpg",
+    "link": "https://github.com/mbingsdk/Multi-Vendor-Marketplace"
+  },
+  {
+    "title": "Mikrotik Manager",
+    "description": "Web Aplikasi Mikrotik Manager, dengan fitur menejemen hotspot mendukung user template (mikhmon, mikhbotam, radius), PPPoE, Auto Generate VPN Remote dengan subdomain, Integrasi webhook dan Payment Gateway.",
+    "image": "images/Screenshot 2025-06-18 185845.png",
+    "link": "https://github.com/mbingsdk/mikmanager"
+  },
+  {
+    "title": "Sistem Administrasi Desa",
+    "description": "Web Aplikasi untuk kebutuhan Administrasi Desa/Kelurahaan, Fitur: Kependudukan dan Kartu Keluarga, Persuratan, dan Keuangan. Menggunakan Fullstack NextJS dan Python untuk AI Model API nya",
+    "image": "images/Screenshot 2026-04-19 022923.png",
+    "link": "https://demosad.mbingsdk.my.id"
+  },
+  {
+    "title": "Desktop App Weather Tracker",
+    "description": "Cuma aplikasi untuk deteksi cuaca di game, Eksperiment teknologi CNN Moddel dan OCR untuk deteksi jenis gambar dan baca teks pada layar. Mendeteksi jenis cuaca dan menghitung jede untuk cuaca selanjutnya, discord notifikasi, dll.",
+    "image": "images/Screenshot 2026-04-22 185732.png",
+    "link": "https://github.com/mbingsdk/MountSumbingCompanion/releases"
+  },
+  {
+    "title": "Mobile App Weather Tracker",
+    "description": "Ini versi mobile, konsep sama.",
+    "image": "images/Screenshot 2026-04-25 032128.png",
+    "link": "https://github.com/mbingsdk/SumbingAPK"
+  },
+  {
+    "title": "Web App Toko Bunga",
+    "description": "Gabungan dari Landing Page, Web Store, dan berbagai fitur admin, sampai ke komposisi dan sistem administrasi",
+    "image": "images/Screenshot 2026-04-25 194944.png",
+    "link": "https://github.com/mbingsdk/pelower"
+  }
+]
