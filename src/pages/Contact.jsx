@@ -1,172 +1,253 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaWhatsapp, FaInstagram, FaDiscord, FaFacebook, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import { FaXTwitter } from "react-icons/fa6";
+import { FaXTwitter } from 'react-icons/fa6';
+import { Send, X } from 'lucide-react';
+import { fadeUp, staggerContainer, scaleIn } from '../lib/motionVariants';
 
-const socialMedia = [
+const socialLinks = [
   {
     name: 'WhatsApp',
-    icon: <FaWhatsapp className="text-3xl text-green-500" />,
+    icon: FaWhatsapp,
     link: 'https://wa.me/message/Y357TXW37QACL1',
-    shadow_color: 'shadow-green-300/50 dark:shadow-green-500/30',
+    color: '#25d366',
+    sub: 'Chat langsung',
   },
   {
     name: 'Instagram',
-    icon: <FaInstagram className="text-3xl text-pink-500" />,
+    icon: FaInstagram,
     link: 'https://instagram.com/mbingsdk',
-    shadow_color: 'shadow-pink-300/50 dark:shadow-pink-500/30',
+    color: '#e1306c',
+    sub: '@mbingsdk',
   },
   {
-    name: 'X',
-    icon: <FaXTwitter className="text-3xl text-gray-800 dark:text-white" />,
+    name: 'X / Twitter',
+    icon: FaXTwitter,
     link: 'https://x.com/mbingsdk',
-    shadow_color: 'shadow-gray-400/50 dark:shadow-white/20',
+    color: '#e2e8f0',
+    sub: '@mbingsdk',
   },
   {
     name: 'Facebook',
-    icon: <FaFacebook className="text-3xl text-blue-600" />,
+    icon: FaFacebook,
     link: 'https://www.facebook.com/profile.php?id=100063623905826',
-    shadow_color: 'shadow-blue-300/50 dark:shadow-blue-500/30',
+    color: '#1877f2',
+    sub: 'Mbing SDK',
   },
   {
     name: 'Discord',
-    icon: <FaDiscord className="text-3xl text-indigo-800" />,
+    icon: FaDiscord,
     link: '/#/discord',
     internal: true,
-    shadow_color: 'shadow-indigo-300/50 dark:shadow-indigo-500/30',
+    color: '#5865f2',
+    sub: 'Join server',
   },
   {
     name: 'GitHub',
-    icon: <FaGithub className="text-3xl text-gray-800 dark:text-white" />,
+    icon: FaGithub,
     link: 'https://github.com/mbingsdk',
-    shadow_color: 'shadow-gray-400/50 dark:shadow-white/20',
+    color: '#f0f6fc',
+    sub: 'mbingsdk',
   },
   {
     name: 'LinkedIn',
-    icon: <FaLinkedin className="text-3xl text-blue-600" />,
+    icon: FaLinkedin,
     link: 'https://linkedin.com',
-    shadow_color: 'shadow-blue-300/50 dark:shadow-blue-500/30',
+    color: '#0a66c2',
+    sub: 'Professional',
   },
   {
     name: 'Email',
-    icon: <FaEnvelope className="text-3xl text-red-500" />,
-    link: '#',
-    shadow_color: 'shadow-red-300/50 dark:shadow-red-500/30',
-    onClick: (setShowForm) => {
-      setShowForm((prev) => !prev); // Toggle form
-    },
+    icon: FaEnvelope,
+    link: null,
+    color: '#f87171',
+    sub: 'mbe@mbingsdk.my.id',
+    isEmail: true,
   },
 ];
 
 const Contact = () => {
   const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const [form, setForm]         = useState({ name: '', email: '', message: '' });
+  const [sent, setSent]         = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Pesan terkirim! (Simulasi)");
-    setForm({ name: '', email: '', message: '' });
+    // mailto fallback
+    const subject = encodeURIComponent(`Pesan dari ${form.name}`);
+    const body = encodeURIComponent(`Nama: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
+    window.open(`mailto:mbe@mbingsdk.my.id?subject=${subject}&body=${body}`, '_blank');
+    setSent(true);
+    setTimeout(() => { setSent(false); setShowForm(false); setForm({ name: '', email: '', message: '' }); }, 3000);
   };
 
   return (
-    <motion.div
-      className="pt-24 px-4 max-w-5xl mx-auto text-center"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <motion.h2
-        className="text-3xl font-bold mb-6 text-gradient bg-gradient-to-r from-purple-500 to-indigo-600 bg-clip-text text-transparent"
-        whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.5 }}
-      >
-        Buset, Kepo!
-      </motion.h2>
-
-      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-8">
-        {socialMedia.map((social, i) => (
-          <motion.a
-            key={i}
-            href={social.link}
-            onClick={(e) => {
-              if (social.onClick) {
-                e.preventDefault();
-                social.onClick(setShowForm);
-              }
-            }}
-            target={social.internal ? '_self' : '_blank'}
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.06 }}
-            animate={{ opacity: 1, y: 0 }}
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className={`rounded-2xl p-6 bg-white dark:bg-gray-800 bg-opacity-80 dark:bg-opacity-80 backdrop-blur-xl border border-gray-200 dark:border-gray-700 shadow-xl ${social.shadow_color} flex flex-col items-center justify-center transition duration-300`}
-          >
-            {social.icon}
-            <p className="mt-2 font-medium">{social.name}</p>
-          </motion.a>
-        ))}
+    <div className="relative min-h-screen pt-24 pb-20 overflow-hidden">
+      {/* Background glows */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-64 rounded-full bg-[#00d4aa]/5 blur-3xl" />
+        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-[#7c3aed]/6 blur-3xl" />
       </div>
 
-      <AnimatePresence>
-        {showForm && (
-          <motion.form
-            className="bg-white dark:bg-gray-900 bg-opacity-80 backdrop-blur-xl border border-gray-200 dark:border-gray-700 p-6 rounded-2xl shadow-2xl text-left max-w-xl mx-auto"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
-            onSubmit={handleSubmit}
-          >
-            <div className="mb-4">
-              <label className="block text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">Nama</label>
-              <input
-                type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-white"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">Email</label>
-              <input
-                type="email"
-                name="email"
-                value={form.email}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-white"
-                required
-              />
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-semibold mb-1 text-gray-700 dark:text-gray-300">Pesan</label>
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                className="w-full p-2 border rounded-lg bg-gray-50 dark:bg-gray-800 dark:text-white"
-                rows="4"
-                required
-              ></textarea>
-            </div>
-            <button
-              type="submit"
-              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-8">
+
+        {/* Heading */}
+        <motion.div
+          variants={staggerContainer(0.1)}
+          initial="hidden" whileInView="visible"
+          viewport={{ once: true }}
+          className="mb-14 text-center"
+        >
+          <motion.span variants={fadeUp} className="font-mono text-xs text-[#00d4aa] tracking-wider uppercase mb-3 block">
+            <span className="section-line" />Hubungi saya
+          </motion.span>
+          <motion.h2 variants={fadeUp} className="font-display text-3xl md:text-4xl font-800 text-white mb-3">
+            Buset, <span className="grad-teal">Kepo!</span>
+          </motion.h2>
+          <motion.p variants={fadeUp} className="font-body text-[#a8b4d0] max-w-lg mx-auto text-sm">
+            Ada proyek menarik? Ingin kolaborasi? Atau sekedar ngobrol? Let's connect!
+          </motion.p>
+        </motion.div>
+
+        {/* Social grid */}
+        <motion.div
+          variants={staggerContainer(0.07)}
+          initial="hidden" whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-8"
+        >
+          {socialLinks.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <motion.a
+                key={i}
+                variants={scaleIn}
+                href={s.isEmail ? '#' : s.link}
+                target={s.internal || s.isEmail ? '_self' : '_blank'}
+                rel="noopener noreferrer"
+                onClick={s.isEmail ? (e) => { e.preventDefault(); setShowForm(v => !v); } : undefined}
+                whileHover={{ y: -4 }}
+                whileTap={{ scale: 0.96 }}
+                className="relative group glass rounded-2xl p-5 border border-white/8 flex flex-col items-center gap-3 cursor-pointer overflow-hidden"
+                style={{ '--c': s.color }}
+              >
+                {/* Hover glow */}
+                <div
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+                  style={{ background: `radial-gradient(circle at center, ${s.color}12 0%, transparent 70%)` }}
+                />
+                <div
+                  className="relative w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                  style={{ background: `${s.color}15`, border: `1px solid ${s.color}30` }}
+                >
+                  <Icon style={{ color: s.color, fontSize: 18 }} />
+                </div>
+                <div className="text-center relative z-10">
+                  <div className="font-display font-600 text-white text-sm group-hover:text-white transition-colors">{s.name}</div>
+                  <div className="font-mono text-[10px] text-[#a8b4d0] mt-0.5 truncate max-w-[100px]">{s.sub}</div>
+                </div>
+              </motion.a>
+            );
+          })}
+        </motion.div>
+
+        {/* Email form */}
+        <AnimatePresence>
+          {showForm && (
+            <motion.div
+              initial={{ opacity: 0, y: -20, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -20, scale: 0.97 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-xl mx-auto"
             >
-              Kirim Pesan
-            </button>
-          </motion.form>
-        )}
-      </AnimatePresence>
-    </motion.div>
+              <div className="glass rounded-2xl border border-white/8 p-6 relative">
+                {/* Close */}
+                <button
+                  onClick={() => setShowForm(false)}
+                  className="absolute top-4 right-4 w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors duration-200"
+                >
+                  <X size={13} className="text-[#a8b4d0]" />
+                </button>
+
+                <h3 className="font-display font-700 text-white text-lg mb-5">
+                  Kirim <span className="grad-teal">Pesan</span>
+                </h3>
+
+                {sent ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-8"
+                  >
+                    <div className="text-4xl mb-3">✅</div>
+                    <p className="font-body text-[#00d4aa] font-500">Pesan disiapkan! Cek email client Anda.</p>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    {[
+                      { name: 'name',    label: 'Nama',   type: 'text',  ph: 'John Doe' },
+                      { name: 'email',   label: 'Email',  type: 'email', ph: 'john@example.com' },
+                    ].map(({ name, label, type, ph }) => (
+                      <div key={name}>
+                        <label className="block font-mono text-xs text-[#a8b4d0] mb-1.5">{label}</label>
+                        <input
+                          type={type}
+                          required
+                          placeholder={ph}
+                          value={form[name]}
+                          onChange={e => setForm(f => ({ ...f, [name]: e.target.value }))}
+                          className="w-full font-body text-sm text-white bg-white/5 border border-white/10 focus:border-[#00d4aa]/40 rounded-xl px-4 py-2.5 outline-none transition-colors duration-200 placeholder:text-[#a8b4d0]/40"
+                        />
+                      </div>
+                    ))}
+                    <div>
+                      <label className="block font-mono text-xs text-[#a8b4d0] mb-1.5">Pesan</label>
+                      <textarea
+                        required
+                        rows={4}
+                        placeholder="Halo! Saya ingin..."
+                        value={form.message}
+                        onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                        className="w-full font-body text-sm text-white bg-white/5 border border-white/10 focus:border-[#00d4aa]/40 rounded-xl px-4 py-2.5 outline-none transition-colors duration-200 placeholder:text-[#a8b4d0]/40 resize-none"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-body font-600 text-sm text-[#080d1a] transition-all duration-300"
+                      style={{
+                        background: 'linear-gradient(135deg, #00d4aa, #22d3ee)',
+                        boxShadow: '0 4px 24px rgba(0,212,170,0.2)',
+                      }}
+                    >
+                      <Send size={14} /> Kirim via Email
+                    </button>
+                  </form>
+                )}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Bottom CTA */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden" whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <div className="inline-flex flex-col items-center gap-3">
+            <p className="font-mono text-xs text-[#a8b4d0] tracking-wider">DIRECT EMAIL</p>
+            <a
+              href="mailto:mbe@mbingsdk.my.id"
+              className="font-display text-xl font-700 grad-teal hover:opacity-80 transition-opacity duration-200"
+            >
+              mbe@mbingsdk.my.id
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </div>
   );
 };
 

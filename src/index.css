@@ -1,82 +1,274 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
-.masonry-column {
-  display: flex;
-  flex-direction: column;
-  gap: 0.1rem;
+/* @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600;700&display=swap'); */
+
+/* ── Design Tokens ─────────────────────────────── */
+:root {
+  --navy:     #080d1a;
+  --navy-2:   #0d1530;
+  --navy-3:   #111d3c;
+  --teal:     #00d4aa;
+  --teal-dim: #00a882;
+  --cyan:     #22d3ee;
+  --violet:   #7c3aed;
+  --violet-2: #a855f7;
+  --pink:     #ec4899;
+  --white:    #f0f4ff;
+  --white-dim:#a8b4d0;
+  --glass:    rgba(255,255,255,0.04);
+  --glass-b:  rgba(255,255,255,0.08);
+  --border:   rgba(255,255,255,0.08);
+  --border-h: rgba(0,212,170,0.25);
+  --glow-t:   rgba(0,212,170,0.15);
+  --glow-v:   rgba(124,58,237,0.15);
+  --font-display: 'Syne', sans-serif;
+  --font-mono:    'DM Mono', monospace;
+  --font-body:    'Outfit', sans-serif;
 }
 
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
+/* ── Base Reset ─────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
 
+html { scroll-behavior: smooth; }
 
-/* :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+body {
+  font-family: var(--font-body);
+  background: var(--navy);
+  color: var(--white);
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* ── Typography ─────────────────────────────────── */
+.font-display { font-family: var(--font-display); }
+.font-mono    { font-family: var(--font-mono); }
+.font-body    { font-family: var(--font-body); }
+
+/* ── Glassmorphism ──────────────────────────────── */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(16px) saturate(1.5);
+  -webkit-backdrop-filter: blur(16px) saturate(1.5);
+  border: 1px solid var(--border);
 }
-a:hover {
-  color: #535bf2;
+.glass-hover {
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.glass-hover:hover {
+  background: var(--glass-b);
+  border-color: var(--border-h);
+  box-shadow: 0 0 32px var(--glow-t), 0 8px 32px rgba(0,0,0,0.4);
 }
 
-body {
-  margin: 0;
+/* ── Gradient Text ──────────────────────────────── */
+.grad-teal {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-violet {
+  background: linear-gradient(135deg, var(--violet-2) 0%, var(--pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.grad-full {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--violet-2) 60%, var(--pink) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Animated Gradient Border ───────────────────── */
+.grad-border {
+  position: relative;
+  border-radius: 16px;
+}
+.grad-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--teal), var(--violet), var(--pink), var(--teal));
+  background-size: 300% 300%;
+  animation: border-spin 4s linear infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.grad-border:hover::before { opacity: 1; }
+
+@keyframes border-spin {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Glow Effects ───────────────────────────────── */
+.glow-teal  { box-shadow: 0 0 20px rgba(0,212,170,0.3); }
+.glow-violet{ box-shadow: 0 0 20px rgba(124,58,237,0.3); }
+
+/* ── Noise Texture ──────────────────────────────── */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Scrollbar ───────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--teal), var(--violet));
+  border-radius: 4px;
+}
+
+/* ── Masonry (Gallery) ──────────────────────────── */
+.masonry-column {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  gap: 6px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* ── Scroll Progress Bar ────────────────────────── */
+#scroll-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--violet));
+  z-index: 9999;
+  transform-origin: left;
+  transition: width 0.1s linear;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+/* ── Badge chips ─────────────────────────────────── */
+.badge-chip {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  color: var(--teal);
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s, background 0.2s;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.badge-chip:hover {
+  border-color: var(--teal);
+  background: rgba(0,212,170,0.1);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+/* ── Tilt Card ───────────────────────────────────── */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+/* ── Section heading decorative line ────────────── */
+.section-line {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), transparent);
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+
+/* ── Cursor Glow (desktop only) ──────────────────── */
+#cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,212,170,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: left 0.15s ease, top 0.15s ease;
+}
+
+/* ── Floating particle ───────────────────────────── */
+@keyframes float-up {
+  0%   { opacity: 0; transform: translateY(0) scale(0.5); }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-120px) scale(1); }
+}
+.particle {
+  position: absolute;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: float-up 4s ease-in-out infinite;
+}
+
+/* ── Grid pattern ────────────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Shimmer on cards ────────────────────────────── */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 40%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  animation: shimmer 3s ease infinite;
+}
+
+/* ── Tech orbit ring ─────────────────────────────── */
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+}
+@keyframes orbit-r {
+  from { transform: rotate(360deg) translateX(110px) rotate(-360deg); }
+  to   { transform: rotate(0deg) translateX(110px) rotate(0deg); }
+}
+.orbit-item {
+  position: absolute;
+  animation: orbit 8s linear infinite;
+}
+.orbit-item-r {
+  position: absolute;
+  animation: orbit-r 12s linear infinite;
+}
+
+/* ── Pulse ring ──────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.pulse-ring::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 1px solid var(--teal);
+  border-radius: 50%;
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* ── Reduced motion ──────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
+}
