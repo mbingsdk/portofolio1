@@ -46,7 +46,7 @@ const TerminalVisual = ({ prefersReduced }) => (
       <div className="p-5 space-y-1 font-mono text-xs leading-relaxed">
         {[
           { color: '#a8b4d0', text: '$ whoami' },
-          { color: '#00d4aa', text: 'Mbing SDK — full-stack + network infra dev' },
+          { color: '#00d4aa', text: 'Mbing SDK | full-stack + network infra dev' },
           { color: '#a8b4d0', text: '' },
           { color: '#a8b4d0', text: '$ ls ./builds' },
           { color: '#22d3ee', text: 'mikrotik-manager/  billing-system/  admin-desa/' },
@@ -135,11 +135,11 @@ const Home = () => {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00d4aa]" />
                 </span>
                 <span className="font-mono text-xs text-[#00d4aa] tracking-wider uppercase">
-                  Open to work · Parepare, Indonesia
+                  Open to work · Enrekang, Indonesia
                 </span>
               </motion.div>
 
-              {/* Headline — what I build, not who I am */}
+              {/* Headline | what I build, not who I am */}
               <motion.h1
                 variants={fadeUp}
                 className="font-display text-4xl md:text-5xl xl:text-6xl font-800 leading-[1.05] tracking-tight"
@@ -149,7 +149,7 @@ const Home = () => {
                 that work
                 <br />
                 <span className="text-[#a8b4d0] text-3xl md:text-4xl xl:text-5xl font-500">
-                  — not just interfaces.
+                  | not just interfaces.
                 </span>
               </motion.h1>
 
@@ -161,7 +161,7 @@ const Home = () => {
                 <span className="text-white font-500">WhatsApp billing pipelines</span>
                 {' '}to{' '}
                 <span className="text-white font-500">AI-assisted civic platforms</span>
-                {' '}— I take real problems and ship full-stack solutions.
+                {' '}| I take real problems and ship full-stack solutions.
               </motion.p>
 
               {/* Capability chips */}
@@ -265,7 +265,7 @@ const Home = () => {
             <span className="grad-teal">untangling?</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="font-body text-[#a8b4d0] mb-8 text-sm leading-relaxed max-w-lg mx-auto">
-            Whether it's a network management dashboard, API integration, automated workflow, or a full-stack platform — I work best on problems with actual constraints.
+            Whether it's a network management dashboard, API integration, automated workflow, or a full-stack platform | I work best on problems with actual constraints.
           </motion.p>
           <motion.div variants={fadeUp} className="flex flex-wrap gap-3 justify-center">
             <Link

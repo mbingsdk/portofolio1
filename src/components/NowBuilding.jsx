@@ -218,7 +218,7 @@ export function NowBuilding() {
           className="mt-8 p-4 rounded-xl border border-white/5 bg-white/2"
         >
           <p className="font-mono text-xs text-[#a8b4d0]/50 leading-relaxed">
-            <span className="text-[#00d4aa]">//</span> Current focus: turning one-off client tools into reusable infrastructure — network management, document automation, and API-first systems that don't require babysitting.
+            <span className="text-[#00d4aa]">//</span> Current focus: turning one-off client tools into reusable infrastructure | network management, document automation, and API-first systems that don't require babysitting.
           </p>
         </motion.div>
       </div>

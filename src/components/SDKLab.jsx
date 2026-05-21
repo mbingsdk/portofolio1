@@ -39,7 +39,7 @@ const experiments = [
     title: 'Discord Moderator Panel',
     type: 'Bot + Dashboard',
     typeColor: '#818cf8',
-    desc: 'Web control panel for Discord bot management — server stats, mod actions, fun commands, and member analytics in one place.',
+    desc: 'Web control panel for Discord bot management | server stats, mod actions, fun commands, and member analytics in one place.',
     tags: ['Node.js', 'Discord.js', 'React'],
     link: 'https://discord.mbingsdk.my.id',
     isGithub: false,
@@ -49,7 +49,7 @@ const experiments = [
     title: 'Hotspot Coin System',
     type: 'Network Infra',
     typeColor: '#f87171',
-    desc: 'Mikrotik login page with coin-based access — buy time via online payment, redeem, and get connected. Includes live chat for support.',
+    desc: 'Mikrotik login page with coin-based access | buy time via online payment, redeem, and get connected. Includes live chat for support.',
     tags: ['PHP', 'Mikrotik API', 'Payment Gateway'],
     link: 'https://github.com/mbingsdk/sdkdev-hotspot',
     isGithub: true,
@@ -59,7 +59,7 @@ const experiments = [
     title: 'Toko Bunga',
     type: 'Full Commerce',
     typeColor: '#fb923c',
-    desc: 'Flower shop platform: landing page, product store, composition planner, order management, and delivery admin — all integrated.',
+    desc: 'Flower shop platform: landing page, product store, composition planner, order management, and delivery admin | all integrated.',
     tags: ['Next.js', 'PostgreSQL', 'Tailwind'],
     link: 'https://github.com/mbingsdk/pelower',
     isGithub: true,
@@ -79,7 +79,7 @@ const experiments = [
     title: 'Multi Vendor Marketplace',
     type: 'Platform',
     typeColor: '#6ee7b7',
-    desc: 'UMKM-scale marketplace: multiple vendors, local courier integration, and four dashboards — Admin, Vendor, Customer, Courier.',
+    desc: 'UMKM-scale marketplace: multiple vendors, local courier integration, and four dashboards | Admin, Vendor, Customer, Courier.',
     tags: ['Laravel', 'Flutter', 'MySQL', 'Mobile'],
     link: 'https://github.com/mbingsdk/Multi-Vendor-Marketplace',
     isGithub: true,
@@ -127,7 +127,7 @@ export default function SDKLab() {
             </span>
           </motion.h2>
           <motion.p variants={fadeUp} className="font-body text-[#a8b4d0] max-w-xl text-sm">
-            Not everything needs to scale. These are the side-builds, API experiments, and creative one-offs — shipped because the problem was interesting.
+            Not everything needs to scale. These are the side-builds, API experiments, and creative one-offs | shipped because the problem was interesting.
           </motion.p>
         </motion.div>
 

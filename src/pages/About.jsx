@@ -114,7 +114,7 @@ const About = () => (
         <motion.div variants={fadeUp} className="md:col-span-2 space-y-4">
           {[
             'Halo! Saya seorang Web Developer yang suka Digital Eksperiment untuk hal-hal yang menarik, interaktif, dan estetis.',
-            'Saya tertarik dengan desain mimetic — pendekatan yang mengadaptasi elemen dunia nyata seperti tekstur, bayangan, dan kedalaman, sambil tetap mempertahankan responsivitas dan kesan modern.',
+            'Saya tertarik dengan desain mimetic | pendekatan yang mengadaptasi elemen dunia nyata seperti tekstur, bayangan, dan kedalaman, sambil tetap mempertahankan responsivitas dan kesan modern.',
             'Saat ini mengembangkan beberapa proyek pribadi: aplikasi toko berbasis web, sistem chatbot untuk WhatsApp, UI kreatif untuk pengguna mobile, dan berbagai eksperimen AI.',
             'Di waktu luang, saya mengeksplorasi musik fingerstyle dan mendalami teknologi AI untuk meningkatkan produktivitas dan kreativitas.',
           ].map((p, i) => (

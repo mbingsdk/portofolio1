@@ -8,7 +8,7 @@ const featuredProjects = [
   {
     id: 'mikmanager',
     title: 'Mikrotik Manager',
-    tagline: 'Full-stack network infrastructure management — from hotspot to VPN, automated.',
+    tagline: 'Full-stack network infrastructure management | from hotspot to VPN, automated.',
     icon: Server,
     accentColor: '#00d4aa',
     status: 'Live · v2.0',
@@ -18,7 +18,7 @@ const featuredProjects = [
       github: 'https://github.com/mbingsdk/mikmanager',
     },
     problem: 'ISP and network operators managing Mikrotik routers had to juggle multiple tools: Winbox for hotspot, separate billing scripts, and manual VPN setup. Each task required technical expertise and hours of repetitive configuration.',
-    solution: 'A unified web dashboard that abstracts Mikrotik\'s RouterOS API into human-readable operations. Operators can provision hotspot users, generate voucher batches, manage PPPoE accounts, and spin up VPN tunnels with auto-subdomain — all from one interface with zero Winbox required.',
+    solution: 'A unified web dashboard that abstracts Mikrotik\'s RouterOS API into human-readable operations. Operators can provision hotspot users, generate voucher batches, manage PPPoE accounts, and spin up VPN tunnels with auto-subdomain | all from one interface with zero Winbox required.',
     role: 'Solo full-stack developer. Designed the architecture, built the RouterOS API integration layer, created the payment webhook system, and deployed the production instance.',
     stack: ['Node.js', 'React', 'RouterOS API', 'WebSocket', 'PostgreSQL', 'Payment Gateway', 'Nginx'],
     highlights: [
@@ -31,7 +31,7 @@ const featuredProjects = [
   {
     id: 'billing-reminder',
     title: 'Billing Reminder System',
-    tagline: 'Accurate accounting API + WhatsApp Cloud API — zero-touch invoice follow-up.',
+    tagline: 'Accurate accounting API + WhatsApp Cloud API | zero-touch invoice follow-up.',
     icon: Zap,
     accentColor: '#22d3ee',
     status: 'Production · Client',
@@ -54,7 +54,7 @@ const featuredProjects = [
   {
     id: 'sad',
     title: 'Sistem Administrasi Desa',
-    tagline: 'Civic tech for Indonesian villages — population records, documents, finances, and an AI model API.',
+    tagline: 'Civic tech for Indonesian villages | population records, documents, finances, and an AI model API.',
     icon: Globe,
     accentColor: '#a855f7',
     status: 'Beta · Demo Live',
@@ -278,7 +278,7 @@ export default function FeaturedProjects() {
             Projects that <span className="grad-teal">shipped</span>
           </motion.h2>
           <motion.p variants={fadeUp} className="font-body text-[#a8b4d0] max-w-lg text-sm">
-            Three builds worth reading about — each solving a real problem, not just a portfolio exercise.
+            Three builds worth reading about | each solving a real problem, not just a portfolio exercise.
           </motion.p>
         </motion.div>
 
