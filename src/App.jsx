@@ -11,36 +11,29 @@ import Footer from './components/Footer';
 import ScrollToTop from './animations/ScrollToTop';
 import Discord from './pages/Discord';
 import NotFound from './pages/NotFound';
+import CommandPalette from './components/CommandPalette';
 
-function App() {
-  // Force dark mode for the premium aesthetic (always dark)
-  const [isDark, setDarkMode] = useState(true);
+function AppInner() {
+  const [paletteOpen, setPaletteOpen] = useState(false);
 
-  // Apply dark class to html
+  // Global Ctrl+K / Cmd+K listener
   useEffect(() => {
-    document.documentElement.classList.add('dark');
-    document.body.style.background = '#080d1a';
-  }, []);
-
-  // Cursor glow effect (desktop only)
-  useEffect(() => {
-    const el = document.getElementById('cursor-glow');
-    if (!el) return;
-    const move = (e) => {
-      el.style.left = `${e.clientX}px`;
-      el.style.top  = `${e.clientY}px`;
+    const handler = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setPaletteOpen(v => !v);
+      }
     };
-    window.addEventListener('mousemove', move, { passive: true });
-    return () => window.removeEventListener('mousemove', move);
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
   }, []);
 
   return (
-    <Router>
-      {/* Cursor glow */}
-      <div id="cursor-glow" className="hidden md:block" />
+    <>
+      <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
 
       <div className="min-h-screen" style={{ background: '#080d1a', color: '#f0f4ff' }}>
-        <Navbar darkMode={isDark} setDarkMode={setDarkMode} />
+        <Navbar darkMode={true} onOpenPalette={() => setPaletteOpen(true)} />
         <ScrollToTop />
         <main>
           <Routes>
@@ -55,6 +48,37 @@ function App() {
         </main>
         <Footer />
       </div>
+    </>
+  );
+}
+
+function App() {
+  const [isDark, setDarkMode] = useState(true);
+
+  // Force dark mode
+  useEffect(() => {
+    document.documentElement.classList.add('dark');
+    document.body.style.background = '#080d1a';
+  }, []);
+
+  // Cursor glow (desktop only, respects reduced motion)
+  useEffect(() => {
+    const el = document.getElementById('cursor-glow');
+    if (!el) return;
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches) return;
+    const move = (e) => {
+      el.style.left = `${e.clientX}px`;
+      el.style.top  = `${e.clientY}px`;
+    };
+    window.addEventListener('mousemove', move, { passive: true });
+    return () => window.removeEventListener('mousemove', move);
+  }, []);
+
+  return (
+    <Router>
+      <div id="cursor-glow" className="hidden md:block" />
+      <AppInner />
     </Router>
   );
 }

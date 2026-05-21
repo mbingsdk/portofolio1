@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Logo from './Logo';
 
@@ -12,8 +12,7 @@ const links = [
   { to: '/contact',   label: 'Contact' },
 ];
 
-// const Navbar = ({ darkMode, setDarkMode }) => {
-const Navbar = ({ darkMode }) => {
+const Navbar = ({ darkMode, onOpenPalette }) => {
   const [menuOpen, setMenuOpen]   = useState(false);
   const [scrolled, setScrolled]   = useState(false);
   const [scrollPct, setScrollPct] = useState(0);
@@ -36,7 +35,6 @@ const Navbar = ({ darkMode }) => {
     <>
       {/* Scroll progress bar */}
       <div
-        // style={{ width: `${scrollPct}%` }}
         className="fixed top-0 left-0 h-[2px] z-[9999] transition-all duration-100"
         style={{
           width: `${scrollPct}%`,
@@ -50,14 +48,14 @@ const Navbar = ({ darkMode }) => {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? 'backdrop-blur-xl bg-[rgba(8,13,26,0.85)] border-b border-white/5 shadow-lg shadow-black/30'
+            ? 'backdrop-blur-xl bg-[rgba(8,13,26,0.88)] border-b border-white/5 shadow-lg shadow-black/30'
             : 'bg-transparent'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group">
+          <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
             <div className="relative">
               <Logo className="w-8 h-auto text-[#00d4aa] group-hover:text-[#22d3ee] transition-colors duration-300" />
               <span className="absolute -inset-1 rounded-full bg-[#00d4aa]/10 scale-0 group-hover:scale-100 transition-transform duration-300" />
@@ -67,7 +65,7 @@ const Navbar = ({ darkMode }) => {
             </span>
           </Link>
 
-          {/* Desktop nav links */}
+          {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-1">
             {links.map(({ to, label }) => {
               const active = location.pathname === to;
@@ -76,9 +74,7 @@ const Navbar = ({ darkMode }) => {
                   key={to}
                   to={to}
                   className={`relative px-4 py-2 rounded-lg font-body text-sm font-medium transition-colors duration-200 ${
-                    active
-                      ? 'text-[#00d4aa]'
-                      : 'text-[#a8b4d0] hover:text-white'
+                    active ? 'text-[#00d4aa]' : 'text-[#a8b4d0] hover:text-white'
                   }`}
                 >
                   {label}
@@ -92,34 +88,39 @@ const Navbar = ({ darkMode }) => {
               );
             })}
 
-            {/* Theme toggle */}
-            {/* <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="ml-3 p-2 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-[#00d4aa]/30 transition-all duration-200"
-              aria-label="Toggle theme"
-            >
-              {darkMode
-                ? <Sun className="w-4 h-4 text-yellow-400" />
-                : <Moon className="w-4 h-4 text-[#a8b4d0]" />
-              }
-            </button> */}
+            {/* Command palette trigger */}
+            {onOpenPalette && (
+              <button
+                onClick={onOpenPalette}
+                className="ml-2 flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-[#00d4aa]/30 transition-all duration-200 group"
+                aria-label="Open command palette (Ctrl+K)"
+              >
+                <Search size={12} className="text-[#a8b4d0] group-hover:text-[#00d4aa] transition-colors" />
+                <span className="font-mono text-[10px] text-[#a8b4d0]/60">⌃K</span>
+              </button>
+            )}
           </div>
 
           {/* Mobile controls */}
           <div className="md:hidden flex items-center gap-2">
-            {/* <button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-lg border border-white/10 bg-white/5"
-              aria-label="Toggle theme"
-            >
-              {darkMode ? <Sun className="w-4 h-4 text-yellow-400" /> : <Moon className="w-4 h-4 text-[#a8b4d0]" />}
-            </button> */}
+            {onOpenPalette && (
+              <button
+                onClick={onOpenPalette}
+                className="p-2 rounded-lg border border-white/10 bg-white/5"
+                aria-label="Search"
+              >
+                <Search className="w-4 h-4 text-[#a8b4d0]" />
+              </button>
+            )}
             <button
               onClick={() => setMenuOpen(v => !v)}
               className="p-2 rounded-lg border border-white/10 bg-white/5"
               aria-label="Toggle menu"
             >
-              {menuOpen ? <X className="w-5 h-5 text-white" /> : <Menu className="w-5 h-5 text-white" />}
+              {menuOpen
+                ? <X className="w-5 h-5 text-white" />
+                : <Menu className="w-5 h-5 text-white" />
+              }
             </button>
           </div>
         </div>
