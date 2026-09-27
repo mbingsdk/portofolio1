@@ -1,5 +1,40 @@
 [
   {
+    "title": "punti.id",
+    "description": "Platform commerce multi-tenant untuk UMKM Indonesia: storefront toko, discovery produk, checkout, inventory, order management, POS/kasir, finance dasar, kurir lokal, dan super admin. Dibangun dari project UMKM Commerce OS Hybrid.",
+    "image": "https://image.thum.io/get/width/1200/crop/800/https://punti.id/",
+    "link": "https://punti.id",
+    "repo": "https://github.com/mbingsdk/umkm-commerce-os-hybrid",
+    "status": "Live",
+    "statusType": "live"
+  },
+  {
+    "title": "WhatsBuatin",
+    "description": "Project WhatsApp Business automation yang masih dalam development, dengan fokus pada inbox, workflow pesan, integrasi, dan fondasi multi-tenant WABA.",
+    "image": "images/whatsbuatin.svg",
+    "link": "https://github.com/mbingsdk/whats",
+    "status": "In Development",
+    "statusType": "development"
+  },
+  {
+    "title": "Koperasi Ledger",
+    "description": "Aplikasi buku kas digital koperasi mobile-first untuk anggota, iuran, kas, pinjaman, laporan, import Excel, audit log, dan pengelolaan master data. Backend sudah terhubung PostgreSQL via Prisma.",
+    "image": "https://image.thum.io/get/width/1200/crop/800/https://kopjen.sdkdev.net/",
+    "link": "https://kopjen.sdkdev.net",
+    "repo": "https://github.com/mbingsdk/koperasi_v1",
+    "status": "Live",
+    "statusType": "live"
+  },
+  {
+    "title": "Yurra Production",
+    "description": "Website personal dan community hub dengan blog, Roblox/game links, public moderation archive, serta owner dashboard. Production site yang dirujuk: imyurra.com.",
+    "image": "https://image.thum.io/get/width/1200/crop/800/https://imyurra.com/",
+    "link": "https://imyurra.com",
+    "repo": "https://github.com/mbingsdk/yrr",
+    "status": "Live",
+    "statusType": "live"
+  },
+  {
     "title": "Website Portfolio",
     "description": "Sebuah website pribadi untuk menampilkan proyek dan kontak.",
     "image": "images/porto.png",
