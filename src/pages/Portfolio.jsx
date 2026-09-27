@@ -107,7 +107,19 @@ const ProjectCard = ({ project, i }) => {
                 </div>
               </div>
             )}
-            {/* Overlay on hover */}
+            {/* Status badge + overlay */}
+            {project.status && (
+              <div
+                className="absolute top-3 left-3 z-10 font-mono text-[10px] px-2.5 py-1 rounded-full border backdrop-blur-md"
+                style={{
+                  color: project.statusType === 'development' ? '#22d3ee' : '#00d4aa',
+                  borderColor: project.statusType === 'development' ? '#22d3ee40' : '#00d4aa40',
+                  background: project.statusType === 'development' ? '#22d3ee12' : '#00d4aa12',
+                }}
+              >
+                {project.status}
+              </div>
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-[#080d1a] via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300" />
           </div>
 
