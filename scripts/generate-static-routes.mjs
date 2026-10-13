@@ -50,7 +50,7 @@ const routes = {
     description: 'Kenali Mbing SDK, full-stack developer di Enrekang, Sulawesi Selatan. Fokus pada React, backend, automasi, integrasi API, dan sistem jaringan.',
     body: content('About / Mbing SDK', 'Tentang Mbing SDK',
       'Saya full-stack developer yang tertarik pada produk digital fungsional, desain interaktif, automasi, dan teknologi.',
-      '<section><h2>Keahlian & teknologi</h2><p>React, Next.js, JavaScript, Node.js, Python, PostgreSQL, API, WhatsApp Cloud API, Mikrotik, Linux, Docker, dan desain UI.</p></section>'),
+      '<section><h2>Keahlian & teknologi</h2><p>React, Next.js, JavaScript, Go (Golang), Kotlin, Dart, Node.js, Python, PostgreSQL, API, WhatsApp Cloud API, Mikrotik, Linux, Docker, dan desain UI.</p></section>'),
   },
   contact: {
     title: 'Kontak & Kolaborasi | Mbing SDK',

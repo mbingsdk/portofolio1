@@ -44,7 +44,7 @@ export default function Home() {
    </motion.div>
    <GlassSculpture/>
   </div></section>
-  <div className="marquee-line"><div className="container-wide marquee-inner"><span>Frontend & backend</span><span>Custom applications</span><span>API integration</span><span>Creative engineering</span></div></div>
+  <div className="marquee-line"><div className="container-wide marquee-inner"><span>Frontend & backend</span><span>Custom applications</span><span>API integration</span><span>Creative engineering</span><span>Go · Kotlin · Dart</span></div></div>
   <FeaturedProjects/>
   <section className="section-space"><div className="container-wide capabilities">
    <motion.div {...reveal} className="capability-intro"><span className="eyebrow">What I do</span><h2 className="display-md" style={{margin:'20px 0'}}>Complex in the back.<br/><span className="iris-text">Simple in your hands.</span></h2><p className="body-lead">Bukan sekadar tampilan bagus. Saya senang merancang sistem yang masuk akal, mudah dipakai, dan benar-benar membantu pekerjaan.</p><Link to="/about" className="pill-link">More about my approach <ArrowUpRight size={17}/></Link></motion.div>
