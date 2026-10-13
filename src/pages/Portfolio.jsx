@@ -45,3 +45,4 @@ export default function Portfolio(){
   {loading?<div className="archive-grid">{Array.from({length:4},(_,i)=><div className="archive-skeleton" key={i}/>)}</div>:error?<div className="glass-surface archive-empty"><h3>Projects unavailable</h3><p>Project data couldn't be loaded right now.</p></div>:filtered.length===0?<div className="glass-surface archive-empty"><h3>No matching projects</h3><p>Coba pencarian lain atau pilih kategori All work.</p></div>:<div className="archive-grid">{filtered.map((project,i)=><ProjectCard project={project} key={project.title+i} index={i}/>)}</div>}
   {!loading&&!error&&<div style={{textAlign:'center',paddingTop:44}}><span className="eyebrow">{filtered.length} / {projects.length} projects displayed</span></div>}
  </section>;
+}
