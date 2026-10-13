@@ -33,6 +33,7 @@ export default function Navbar({ onOpenPalette }) {
         </Link>
         <div className="nav-links">
           {links.map(({to,label,end}) => <NavLink key={to} to={to} end={end} className={({isActive}) => isActive ? 'active' : ''}>{label}</NavLink>)}
+          <a href="/jasa-pembuatan-aplikasi/">Jasa Aplikasi</a>
         </div>
         <div className="nav-actions">
           <button type="button" className="nav-search" onClick={onOpenPalette} aria-label="Search pages and projects"><Search size={17}/></button>
@@ -44,6 +45,7 @@ export default function Navbar({ onOpenPalette }) {
       </div>
       {menuOpen && <div id="mobile-navigation" className="nav-mobile">
         {links.map(({to,label,end}) => <NavLink key={to} to={to} end={end} onClick={() => setMenuOpen(false)} className={({isActive}) => isActive ? 'active' : ''}>{label}</NavLink>)}
+        <a href="/jasa-pembuatan-aplikasi/">Jasa Pembuatan Aplikasi</a>
       </div>}
       <span className="scroll-meter" style={{width: `calc((100% - 24px) * ${progress / 100})`}} aria-hidden="true"/>
     </nav>
