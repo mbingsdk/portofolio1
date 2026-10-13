@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -44,4 +44,4 @@ function Site() {
     </div>
   );
 }
-export default function App() { return <HashRouter><Site /></HashRouter>; }
+export default function App() { return <BrowserRouter><Site /></BrowserRouter>; }
