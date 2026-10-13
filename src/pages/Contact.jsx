@@ -1,254 +1,29 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaWhatsapp, FaInstagram, FaDiscord, FaFacebook, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
-import { FaXTwitter } from 'react-icons/fa6';
-import { Send, X } from 'lucide-react';
-import { fadeUp, staggerContainer, scaleIn } from '../lib/motionVariants';
-
-const socialLinks = [
-  {
-    name: 'WhatsApp',
-    icon: FaWhatsapp,
-    link: 'https://wa.me/message/Y357TXW37QACL1',
-    color: '#25d366',
-    sub: 'Chat langsung',
-  },
-  {
-    name: 'Instagram',
-    icon: FaInstagram,
-    link: 'https://instagram.com/mbingsdk',
-    color: '#e1306c',
-    sub: '@mbingsdk',
-  },
-  {
-    name: 'X / Twitter',
-    icon: FaXTwitter,
-    link: 'https://x.com/mbingsdk',
-    color: '#e2e8f0',
-    sub: '@mbingsdk',
-  },
-  {
-    name: 'Facebook',
-    icon: FaFacebook,
-    link: 'https://www.facebook.com/profile.php?id=100063623905826',
-    color: '#1877f2',
-    sub: 'Mbing SDK',
-  },
-  {
-    name: 'Discord',
-    icon: FaDiscord,
-    link: '/#/discord',
-    internal: true,
-    color: '#5865f2',
-    sub: 'Join server',
-  },
-  {
-    name: 'GitHub',
-    icon: FaGithub,
-    link: 'https://github.com/mbingsdk',
-    color: '#f0f6fc',
-    sub: 'mbingsdk',
-  },
-  {
-    name: 'LinkedIn',
-    icon: FaLinkedin,
-    link: 'https://linkedin.com',
-    color: '#0a66c2',
-    sub: 'Professional',
-  },
-  {
-    name: 'Email',
-    icon: FaEnvelope,
-    link: null,
-    color: '#f87171',
-    sub: 'mbe@mbingsdk.my.id',
-    isEmail: true,
-  },
+import { ArrowUpRight, Github, Instagram, Mail, MessageCircle, Send, ArrowRight } from 'lucide-react';
+const channels=[
+ {name:'WhatsApp',detail:'Konsultasi langsung',url:'https://wa.me/message/Y357TXW37QACL1',icon:MessageCircle},
+ {name:'Email',detail:'mbe@mbingsdk.my.id',url:'mailto:mbe@mbingsdk.my.id',icon:Mail},
+ {name:'Instagram',detail:'@mbingsdk',url:'https://instagram.com/mbingsdk',icon:Instagram},
+ {name:'GitHub',detail:'github.com/mbingsdk',url:'https://github.com/mbingsdk',icon:Github},
 ];
-
-const Contact = () => {
-  const [showForm, setShowForm] = useState(false);
-  const [form, setForm]         = useState({ name: '', email: '', message: '' });
-  const [sent, setSent]         = useState(false);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // mailto fallback
-    const subject = encodeURIComponent(`Pesan dari ${form.name}`);
-    const body = encodeURIComponent(`Nama: ${form.name}\nEmail: ${form.email}\n\n${form.message}`);
-    window.open(`mailto:mbe@mbingsdk.my.id?subject=${subject}&body=${body}`, '_blank');
-    setSent(true);
-    setTimeout(() => { setSent(false); setShowForm(false); setForm({ name: '', email: '', message: '' }); }, 3000);
-  };
-
-  return (
-    <div className="relative min-h-screen pt-24 pb-20 overflow-hidden">
-      {/* Background glows */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-64 rounded-full bg-[#00d4aa]/5 blur-3xl" />
-        <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-[#7c3aed]/6 blur-3xl" />
-      </div>
-
-      <div className="relative z-10 max-w-5xl mx-auto px-4 md:px-8">
-
-        {/* Heading */}
-        <motion.div
-          variants={staggerContainer(0.1)}
-          initial="hidden" whileInView="visible"
-          viewport={{ once: true }}
-          className="mb-14 text-center"
-        >
-          <motion.span variants={fadeUp} className="font-mono text-xs text-[#00d4aa] tracking-wider uppercase mb-3 block">
-            <span className="section-line" />Hubungi saya
-          </motion.span>
-          <motion.h2 variants={fadeUp} className="font-display text-3xl md:text-4xl font-800 text-white mb-3">
-            Buset, <span className="grad-teal">Kepo!</span>
-          </motion.h2>
-          <motion.p variants={fadeUp} className="font-body text-[#a8b4d0] max-w-lg mx-auto text-sm">
-            Ada proyek menarik? Ingin kolaborasi? Atau sekedar ngobrol? Let's connect!
-          </motion.p>
-        </motion.div>
-
-        {/* Social grid */}
-        <motion.div
-          variants={staggerContainer(0.07)}
-          initial="hidden" whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-8"
-        >
-          {socialLinks.map((s, i) => {
-            const Icon = s.icon;
-            return (
-              <motion.a
-                key={i}
-                variants={scaleIn}
-                href={s.isEmail ? '#' : s.link}
-                target={s.internal || s.isEmail ? '_self' : '_blank'}
-                rel="noopener noreferrer"
-                onClick={s.isEmail ? (e) => { e.preventDefault(); setShowForm(v => !v); } : undefined}
-                whileHover={{ y: -4 }}
-                whileTap={{ scale: 0.96 }}
-                className="relative group glass rounded-2xl p-5 border border-white/8 flex flex-col items-center gap-3 cursor-pointer overflow-hidden"
-                style={{ '--c': s.color }}
-              >
-                {/* Hover glow */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-                  style={{ background: `radial-gradient(circle at center, ${s.color}12 0%, transparent 70%)` }}
-                />
-                <div
-                  className="relative w-11 h-11 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110"
-                  style={{ background: `${s.color}15`, border: `1px solid ${s.color}30` }}
-                >
-                  <Icon style={{ color: s.color, fontSize: 18 }} />
-                </div>
-                <div className="text-center relative z-10">
-                  <div className="font-display font-600 text-white text-sm group-hover:text-white transition-colors">{s.name}</div>
-                  <div className="font-mono text-[10px] text-[#a8b4d0] mt-0.5 truncate max-w-[100px]">{s.sub}</div>
-                </div>
-              </motion.a>
-            );
-          })}
-        </motion.div>
-
-        {/* Email form */}
-        <AnimatePresence>
-          {showForm && (
-            <motion.div
-              initial={{ opacity: 0, y: -20, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -20, scale: 0.97 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-xl mx-auto"
-            >
-              <div className="glass rounded-2xl border border-white/8 p-6 relative">
-                {/* Close */}
-                <button
-                  onClick={() => setShowForm(false)}
-                  className="absolute top-4 right-4 w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors duration-200"
-                >
-                  <X size={13} className="text-[#a8b4d0]" />
-                </button>
-
-                <h3 className="font-display font-700 text-white text-lg mb-5">
-                  Kirim <span className="grad-teal">Pesan</span>
-                </h3>
-
-                {sent ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="text-center py-8"
-                  >
-                    <div className="text-4xl mb-3">✅</div>
-                    <p className="font-body text-[#00d4aa] font-500">Pesan disiapkan! Cek email client Anda.</p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    {[
-                      { name: 'name',    label: 'Nama',   type: 'text',  ph: 'John Doe' },
-                      { name: 'email',   label: 'Email',  type: 'email', ph: 'john@example.com' },
-                    ].map(({ name, label, type, ph }) => (
-                      <div key={name}>
-                        <label className="block font-mono text-xs text-[#a8b4d0] mb-1.5">{label}</label>
-                        <input
-                          type={type}
-                          required
-                          placeholder={ph}
-                          value={form[name]}
-                          onChange={e => setForm(f => ({ ...f, [name]: e.target.value }))}
-                          className="w-full font-body text-sm text-white bg-white/5 border border-white/10 focus:border-[#00d4aa]/40 rounded-xl px-4 py-2.5 outline-none transition-colors duration-200 placeholder:text-[#a8b4d0]/40"
-                        />
-                      </div>
-                    ))}
-                    <div>
-                      <label className="block font-mono text-xs text-[#a8b4d0] mb-1.5">Pesan</label>
-                      <textarea
-                        required
-                        rows={4}
-                        placeholder="Halo! Saya ingin..."
-                        value={form.message}
-                        onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                        className="w-full font-body text-sm text-white bg-white/5 border border-white/10 focus:border-[#00d4aa]/40 rounded-xl px-4 py-2.5 outline-none transition-colors duration-200 placeholder:text-[#a8b4d0]/40 resize-none"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-body font-600 text-sm text-[#080d1a] transition-all duration-300"
-                      style={{
-                        background: 'linear-gradient(135deg, #00d4aa, #22d3ee)',
-                        boxShadow: '0 4px 24px rgba(0,212,170,0.2)',
-                      }}
-                    >
-                      <Send size={14} /> Kirim via Email
-                    </button>
-                  </form>
-                )}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Bottom CTA */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden" whileInView="visible"
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <div className="inline-flex flex-col items-center gap-3">
-            <p className="font-mono text-xs text-[#a8b4d0] tracking-wider">DIRECT EMAIL</p>
-            <a
-              href="mailto:mbe@mbingsdk.my.id"
-              className="font-display text-xl font-700 grad-teal hover:opacity-80 transition-opacity duration-200"
-            >
-              mbe@mbingsdk.my.id
-            </a>
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  );
-};
-
-export default Contact;
+export default function Contact(){
+ const [form,setForm]=useState({name:'',email:'',message:''});
+ const [opened,setOpened]=useState(false);
+ const submit=e=>{e.preventDefault();const subject=encodeURIComponent('Project inquiry from '+form.name);const body=encodeURIComponent('Name: '+form.name+'\nEmail: '+form.email+'\n\n'+form.message);window.location.href='mailto:mbe@mbingsdk.my.id?subject='+subject+'&body='+body;setOpened(true);};
+ return <section className="container-wide" style={{paddingTop:180,paddingBottom:45}}>
+  <div className="contact-layout">
+   <div><span className="eyebrow">Let's connect / Open for collaboration</span><h1 className="display-lg" style={{margin:'22px 0'}}>Have something<br/><span className="iris-text">in mind?</span></h1><p className="body-lead">Butuh aplikasi custom, sistem bisnis, integrasi, atau ingin diskusi ide? Ceritakan sedikit tentang proyek kamu.</p>
+    <div className="contact-methods">{channels.map(({name,detail,url,icon:Icon})=><a key={name} className="contact-method glass-surface glass-hover" href={url} target={url.startsWith('mailto:')?'_self':'_blank'} rel="noopener noreferrer"><span className="contact-method__icon"><Icon size={19}/></span><span className="contact-method__text"><strong>{name}</strong><small>{detail}</small></span><ArrowUpRight size={18} color="#9a9ebc"/></a>)}</div>
+   </div>
+   <div className="contact-form glass-surface"><span className="eyebrow">Start a conversation</span><h2>Tell me about your idea.</h2><p className="muted" style={{fontSize:14,lineHeight:1.7}}>Form ini menyiapkan email di aplikasi email kamu. Belum ada pengiriman otomatis dari website.</p>
+    <form onSubmit={submit}>
+     <label htmlFor="contact-name">What's your name?</label><input id="contact-name" required type="text" placeholder="Your name" autoComplete="name" value={form.name} onChange={e=>setForm({...form,name:e.target.value})}/>
+     <label htmlFor="contact-email">Your email address</label><input id="contact-email" required type="email" placeholder="you@example.com" autoComplete="email" value={form.email} onChange={e=>setForm({...form,email:e.target.value})}/>
+     <label htmlFor="contact-message">A little about your project</label><textarea id="contact-message" required placeholder="What are you planning to build?" value={form.message} onChange={e=>setForm({...form,message:e.target.value})}/>
+     <button type="submit" className="btn btn-primary">Prepare email <ArrowUpRight size={17}/></button>
+    </form>
+    <p className="contact-form__note">{opened?'Aplikasi email telah dibuka. Silakan tekan Send di sana untuk mengirim pesan.':'Alternatively, you can reach me directly via WhatsApp or Instagram.'}</p>
+   </div>
+  </div>
+ </section>;
+}

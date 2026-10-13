@@ -39,8 +39,8 @@ export function CredibilityStrip() {
             <motion.div
               key={label}
               variants={scaleIn}
-              className="liquid-panel relative rounded-2xl border border-white/6 p-4 text-center group overflow-hidden"
-              style={{ background: 'linear-gradient(140deg, rgba(232,244,255,0.14), rgba(149,167,223,0.06))', backdropFilter: 'blur(12px)' }}
+              className="relative rounded-2xl border border-white/6 p-4 text-center group overflow-hidden"
+              style={{ background: 'rgba(13,21,48,0.5)', backdropFilter: 'blur(12px)' }}
             >
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 rounded-2xl"
@@ -152,8 +152,8 @@ export function NowBuilding() {
             <motion.div
               key={i}
               variants={fadeUp}
-              className="liquid-panel relative rounded-2xl border border-white/6 p-6 overflow-hidden group transition-all duration-300 hover:border-white/10"
-              style={{ background: 'linear-gradient(140deg, rgba(232,244,255,0.14), rgba(149,167,223,0.06))', backdropFilter: 'blur(16px)' }}
+              className="relative rounded-2xl border border-white/6 p-6 overflow-hidden group transition-all duration-300 hover:border-white/10"
+              style={{ background: 'rgba(13,21,48,0.6)', backdropFilter: 'blur(16px)' }}
             >
               {/* Left accent */}
               <div

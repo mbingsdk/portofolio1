@@ -1,164 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Search } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { NavLink, Link, useLocation } from 'react-router-dom';
+import { ArrowUpRight, Menu, Search, X } from 'lucide-react';
 import Logo from './Logo';
 
 const links = [
-  { to: '/',          label: 'Home' },
-  { to: '/about',     label: 'About' },
+  { to: '/', label: 'Home', end: true },
   { to: '/portfolio', label: 'Projects' },
-  { to: '/gallery',   label: 'Gallery' },
-  { to: '/contact',   label: 'Contact' },
+  { to: '/about', label: 'About' },
+  { to: '/gallery', label: 'Gallery' },
+  { to: '/contact', label: 'Contact' },
 ];
-
-const Navbar = ({ darkMode, onOpenPalette }) => {
-  const [menuOpen, setMenuOpen]   = useState(false);
-  const [scrolled, setScrolled]   = useState(false);
-  const [scrollPct, setScrollPct] = useState(0);
+export default function Navbar({ onOpenPalette }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [progress, setProgress] = useState(0);
   const location = useLocation();
-
+  useEffect(() => { setMenuOpen(false); }, [location.pathname]);
   useEffect(() => {
     const onScroll = () => {
-      const st = window.scrollY;
-      const docH = document.documentElement.scrollHeight - window.innerHeight;
-      setScrolled(st > 20);
-      setScrollPct(docH > 0 ? (st / docH) * 100 : 0);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(max > 0 ? Math.min(100, (window.scrollY / max) * 100) : 0);
     };
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  useEffect(() => { setMenuOpen(false); }, [location]);
-
+  }, [location.pathname]);
   return (
-    <>
-      {/* Scroll progress bar */}
-      <div
-        className="fixed top-0 left-0 h-[2px] z-[9999] transition-all duration-100"
-        style={{
-          width: `${scrollPct}%`,
-          background: 'linear-gradient(90deg, #a5f1e9, #acb8ff, #e7bcec)',
-        }}
-      />
-
-      <motion.nav
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className={`liquid-nav ${scrolled ? "liquid-nav--scrolled" : ""}`}
-      >
-        <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
-            <div className="relative">
-              <Logo className="w-8 h-auto text-[#00d4aa] group-hover:text-[#22d3ee] transition-colors duration-300" />
-              <span className="absolute -inset-1 rounded-full bg-[#00d4aa]/10 scale-0 group-hover:scale-100 transition-transform duration-300" />
-            </div>
-            <span className="font-display font-700 text-lg text-white tracking-tight">
-              SDK<span className="text-[#00d4aa]">Dev</span>
-            </span>
-          </Link>
-
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
-            {links.map(({ to, label }) => {
-              const active = location.pathname === to;
-              return (
-                <Link
-                  key={to}
-                  to={to}
-                  className={`relative px-4 py-2 rounded-lg font-body text-sm font-medium transition-colors duration-200 ${
-                    active ? 'liquid-nav__active' : 'text-[#cad4e8] hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  {label}
-                  {active && (
-                    <motion.span
-                      layoutId="nav-indicator"
-                      className="absolute bottom-0 left-4 right-4 h-[1px] bg-[#00d4aa] rounded-full"
-                    />
-                  )}
-                </Link>
-              );
-            })}
-
-            {/* Command palette trigger */}
-            {onOpenPalette && (
-              <button
-                onClick={onOpenPalette}
-                className="ml-2 flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 bg-white/5 hover:bg-white/10 hover:border-[#00d4aa]/30 transition-all duration-200 group"
-                aria-label="Open command palette (Ctrl+K)"
-              >
-                <Search size={12} className="text-[#a8b4d0] group-hover:text-[#00d4aa] transition-colors" />
-                <span className="font-mono text-[10px] text-[#a8b4d0]/60">⌃K</span>
-              </button>
-            )}
-          </div>
-
-          {/* Mobile controls */}
-          <div className="md:hidden flex items-center gap-2">
-            {onOpenPalette && (
-              <button
-                onClick={onOpenPalette}
-                className="liquid-nav__control p-2"
-                aria-label="Search"
-              >
-                <Search className="w-4 h-4 text-[#a8b4d0]" />
-              </button>
-            )}
-            <button
-              onClick={() => setMenuOpen(v => !v)}
-              className="liquid-nav__control p-2"
-              aria-label="Toggle menu"
-              aria-expanded={menuOpen}
-            >
-              {menuOpen
-                ? <X className="w-5 h-5 text-white" />
-                : <Menu className="w-5 h-5 text-white" />
-              }
-            </button>
-          </div>
+    <nav className="site-nav glass-surface" aria-label="Main navigation">
+      <div className="site-nav__inner">
+        <Link to="/" className="brand" aria-label="SDK Dev homepage">
+          <span className="brand-mark"><Logo /></span>
+          <span>SDK<span style={{color:'#777bcc'}}>.</span>Dev<small>Digital craft & engineering</small></span>
+        </Link>
+        <div className="nav-links">
+          {links.map(({to,label,end}) => <NavLink key={to} to={to} end={end} className={({isActive}) => isActive ? 'active' : ''}>{label}</NavLink>)}
         </div>
-
-        {/* Mobile menu */}
-        <AnimatePresence>
-          {menuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="liquid-nav__menu md:hidden overflow-hidden"
-            >
-              <div className="flex flex-col py-4 px-4 gap-1">
-                {links.map(({ to, label }, i) => (
-                  <motion.div
-                    key={to}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06 }}
-                  >
-                    <Link
-                      to={to}
-                      className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200 ${
-                        location.pathname === to
-                          ? 'text-[#00d4aa] bg-[#00d4aa]/10'
-                          : 'text-[#a8b4d0] hover:text-white hover:bg-white/5'
-                      }`}
-                    >
-                      {label}
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
-    </>
+        <div className="nav-actions">
+          <button type="button" className="nav-search" onClick={onOpenPalette} aria-label="Search pages and projects"><Search size={17}/></button>
+          <Link className="nav-cta" to="/contact">Let's talk <ArrowUpRight size={15}/></Link>
+          <button type="button" className="nav-menu-button" onClick={() => setMenuOpen(open => !open)} aria-label={menuOpen ? 'Close menu' : 'Open menu'} aria-expanded={menuOpen} aria-controls="mobile-navigation">
+            {menuOpen ? <X size={20}/> : <Menu size={20}/>}
+          </button>
+        </div>
+      </div>
+      {menuOpen && <div id="mobile-navigation" className="nav-mobile">
+        {links.map(({to,label,end}) => <NavLink key={to} to={to} end={end} onClick={() => setMenuOpen(false)} className={({isActive}) => isActive ? 'active' : ''}>{label}</NavLink>)}
+      </div>}
+      <span className="scroll-meter" style={{width: `calc((100% - 24px) * ${progress / 100})`}} aria-hidden="true"/>
+    </nav>
   );
-};
-
-export default Navbar;
+}

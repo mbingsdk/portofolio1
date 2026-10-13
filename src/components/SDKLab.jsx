@@ -145,8 +145,8 @@ export default function SDKLab() {
               <motion.div
                 key={i}
                 variants={scaleIn}
-                className="liquid-panel group relative rounded-2xl border border-white/6 overflow-hidden flex flex-col transition-all duration-300 hover:border-white/12"
-                style={{ background: 'linear-gradient(140deg, rgba(232,244,255,0.14), rgba(149,167,223,0.06))', backdropFilter: 'blur(16px)' }}
+                className="group relative rounded-2xl border border-white/6 overflow-hidden flex flex-col transition-all duration-300 hover:border-white/12"
+                style={{ background: 'rgba(13,21,48,0.6)', backdropFilter: 'blur(16px)' }}
               >
                 {/* Color accent top */}
                 <div
