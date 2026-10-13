@@ -38,7 +38,7 @@ const Navbar = ({ darkMode, onOpenPalette }) => {
         className="fixed top-0 left-0 h-[2px] z-[9999] transition-all duration-100"
         style={{
           width: `${scrollPct}%`,
-          background: 'linear-gradient(90deg, #00d4aa, #7c3aed)',
+          background: 'linear-gradient(90deg, #a5f1e9, #acb8ff, #e7bcec)',
         }}
       />
 
@@ -46,11 +46,7 @@ const Navbar = ({ darkMode, onOpenPalette }) => {
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'backdrop-blur-xl bg-[rgba(8,13,26,0.88)] border-b border-white/5 shadow-lg shadow-black/30'
-            : 'bg-transparent'
-        }`}
+        className={`liquid-nav ${scrolled ? "liquid-nav--scrolled" : ""}`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
 
@@ -74,7 +70,7 @@ const Navbar = ({ darkMode, onOpenPalette }) => {
                   key={to}
                   to={to}
                   className={`relative px-4 py-2 rounded-lg font-body text-sm font-medium transition-colors duration-200 ${
-                    active ? 'text-[#00d4aa]' : 'text-[#a8b4d0] hover:text-white'
+                    active ? 'liquid-nav__active' : 'text-[#cad4e8] hover:text-white hover:bg-white/10'
                   }`}
                 >
                   {label}
@@ -106,7 +102,7 @@ const Navbar = ({ darkMode, onOpenPalette }) => {
             {onOpenPalette && (
               <button
                 onClick={onOpenPalette}
-                className="p-2 rounded-lg border border-white/10 bg-white/5"
+                className="liquid-nav__control p-2"
                 aria-label="Search"
               >
                 <Search className="w-4 h-4 text-[#a8b4d0]" />
@@ -114,8 +110,9 @@ const Navbar = ({ darkMode, onOpenPalette }) => {
             )}
             <button
               onClick={() => setMenuOpen(v => !v)}
-              className="p-2 rounded-lg border border-white/10 bg-white/5"
+              className="liquid-nav__control p-2"
               aria-label="Toggle menu"
+              aria-expanded={menuOpen}
             >
               {menuOpen
                 ? <X className="w-5 h-5 text-white" />
@@ -133,7 +130,7 @@ const Navbar = ({ darkMode, onOpenPalette }) => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: 'easeInOut' }}
-              className="md:hidden overflow-hidden backdrop-blur-xl bg-[rgba(8,13,26,0.95)] border-t border-white/5"
+              className="liquid-nav__menu md:hidden overflow-hidden"
             >
               <div className="flex flex-col py-4 px-4 gap-1">
                 {links.map(({ to, label }, i) => (

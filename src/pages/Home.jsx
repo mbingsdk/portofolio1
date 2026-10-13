@@ -1,103 +1,52 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowRight, Terminal } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Sparkles } from 'lucide-react';
 import { staggerContainer, fadeUp, scaleIn } from '../lib/motionVariants';
 import FeaturedProjects from '../components/FeaturedProjects';
 import SDKLab from '../components/SDKLab';
 import { CredibilityStrip, NowBuilding } from '../components/NowBuilding';
 
-/* ─── Terminal visual ─────────────────────────────── */
-const TerminalVisual = ({ prefersReduced }) => (
+/* ─── Liquid glass showcase ──────────────────────── */
+const LiquidShowcase = ({ prefersReduced }) => (
   <motion.div
     initial={{ opacity: 0, y: prefersReduced ? 0 : 24 }}
     animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: prefersReduced ? 0.15 : 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-    className="relative"
+    transition={{ duration: prefersReduced ? 0.1 : 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+    className="liquid-stage"
+    aria-label="Abstract liquid glass illustration showcasing custom software development"
   >
-    {/* Ambient glow */}
-    {!prefersReduced && (
-      <div
-        className="absolute -inset-8 rounded-3xl blur-3xl opacity-30"
-        style={{ background: 'radial-gradient(ellipse, rgba(0,212,170,0.12) 0%, transparent 70%)' }}
-      />
-    )}
+    <div className="liquid-stage__aura" aria-hidden="true" />
+    <div className="liquid-stage__ring" aria-hidden="true" />
+    <div className="liquid-orb liquid-orb--large" aria-hidden="true" />
+    <div className="liquid-orb liquid-orb--small" aria-hidden="true" />
 
-    <div
-      className="relative rounded-2xl overflow-hidden border border-white/10"
-      style={{
-        background: 'rgba(8,13,26,0.9)',
-        backdropFilter: 'blur(24px)',
-        boxShadow: '0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,212,170,0.06)',
-      }}
-    >
-      {/* Terminal bar */}
-      <div className="flex items-center gap-2 px-4 py-3 border-b border-white/5">
-        <div className="flex gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-          <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-        </div>
-        <span className="font-mono text-[10px] text-[#a8b4d0]/50 ml-2">mbingsdk ~ sdk-dev</span>
-        <Terminal size={10} className="text-[#a8b4d0]/30 ml-auto" />
+    <div className="liquid-showcase">
+      <div className="liquid-showcase__header font-mono">
+        <span className="liquid-showcase__dot" />
+        SDK / DIGITAL STUDIO
+        <Sparkles size={13} className="ml-auto text-[#d4e7ff]" />
       </div>
-
-      {/* Code lines */}
-      <div className="p-5 space-y-1 font-mono text-xs leading-relaxed">
-        {[
-          { color: '#a8b4d0', text: '$ whoami' },
-          { color: '#00d4aa', text: 'Mbing SDK | full-stack + network infra dev' },
-          { color: '#a8b4d0', text: '' },
-          { color: '#a8b4d0', text: '$ ls ./builds' },
-          { color: '#22d3ee', text: 'mikrotik-manager/  billing-system/  admin-desa/' },
-          { color: '#22d3ee', text: 'marketplace/       discord-bot/      hotspot-coins/' },
-          { color: '#a8b4d0', text: '' },
-          { color: '#a8b4d0', text: '$ cat ./stack.txt' },
-          { color: '#6ee7b7', text: 'React · Next.js · Node.js · Python · RouterOS API' },
-          { color: '#6ee7b7', text: 'WhatsApp Cloud · Mikrotik · PostgreSQL · Flutter' },
-          { color: '#a8b4d0', text: '' },
-          { color: '#a8b4d0', text: '$ echo $STATUS' },
-          { color: '#facc15', text: 'Available for interesting problems →' },
-          { color: '#00d4aa', text: '▌', pulse: true },
-        ].map((line, i) => (
-          <div key={i} className="flex items-center gap-0">
-            <span
-              style={{
-                color: line.color,
-                animation: line.pulse && !prefersReduced ? 'blink 1.2s step-end infinite' : 'none',
-              }}
-            >
-              {line.text}
-            </span>
-          </div>
-        ))}
+      <div className="liquid-showcase__body">
+        <span className="liquid-showcase__eyebrow">Designed to solve real problems</span>
+        <h2 className="liquid-showcase__title">Code meets<br /><em>craft.</em></h2>
+        <p className="liquid-showcase__copy">
+          Full-stack apps, connected systems, and automation shaped around the people who use them.
+        </p>
+      </div>
+      <div className="liquid-showcase__footer">
+        <span>WEB APPS</span><span>AUTOMATION</span><span>INFRASTRUCTURE</span>
       </div>
     </div>
 
-    {/* Floating stats */}
-    {[
-      { label: '13+ shipped', x: '-right-4 top-8',  color: '#00d4aa' },
-      { label: '3+ years',    x: '-right-4 bottom-12', color: '#7c3aed' },
-    ].map(({ label, x, color }) => (
-      <motion.div
-        key={label}
-        animate={!prefersReduced ? { y: [0, -6, 0] } : {}}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: label.includes('3') ? 1.5 : 0 }}
-        className={`absolute ${x} hidden xl:flex items-center gap-2 px-3 py-1.5 rounded-lg`}
-        style={{
-          background: `${color}10`,
-          border: `1px solid ${color}30`,
-          backdropFilter: 'blur(8px)',
-        }}
-      >
-        <span className="w-1.5 h-1.5 rounded-full" style={{ background: color }} />
-        <span className="font-mono text-[10px]" style={{ color }}>{label}</span>
-      </motion.div>
-    ))}
-
-    <style>{`
-      @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-    `}</style>
+    <div className="liquid-float liquid-float--top">
+      <span className="liquid-float__label">Selected work</span>
+      <span className="liquid-float__value">Built & shipped <ArrowUpRight size={12} className="inline ml-1 text-[#b7f6f4]" /></span>
+    </div>
+    <div className="liquid-float liquid-float--bottom">
+      <span className="liquid-float__label">Focus</span>
+      <span className="liquid-float__value">Practical by design</span>
+    </div>
   </motion.div>
 );
 
@@ -109,9 +58,9 @@ const Home = () => {
     <div className="relative overflow-hidden">
 
       {/* ══ HERO ══════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+      <section className="liquid-hero relative min-h-[100dvh] flex flex-col justify-center overflow-hidden">
         {/* Background layers */}
-        <div className="absolute inset-0 grid-bg opacity-60" />
+        <div className="absolute inset-0 grid-bg opacity-20" />
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#00d4aa]/5 blur-3xl" />
           <div className="absolute bottom-1/4 right-1/3 w-80 h-80 rounded-full bg-[#7c3aed]/7 blur-3xl" />
@@ -119,7 +68,7 @@ const Home = () => {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 pt-24 pb-12">
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+          <div className="grid lg:grid-cols-2 gap-7 lg:gap-12 items-center min-h-[80vh]">
 
             {/* Left: copy */}
             <motion.div
@@ -129,7 +78,7 @@ const Home = () => {
               className="flex flex-col gap-6"
             >
               {/* Status pill */}
-              <motion.div variants={fadeUp} className="flex items-center gap-2.5">
+              <motion.div variants={fadeUp} className="liquid-eyebrow flex items-center gap-2.5">
                 <span className="relative flex h-2 w-2">
                   <span className={`${prefersReduced ? '' : 'animate-ping'} absolute inline-flex h-full w-full rounded-full bg-[#00d4aa] opacity-60`} />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00d4aa]" />
@@ -142,7 +91,7 @@ const Home = () => {
               {/* Headline | what I build, not who I am */}
               <motion.h1
                 variants={fadeUp}
-                className="font-display text-4xl md:text-5xl xl:text-6xl font-800 leading-[1.05] tracking-tight"
+                className="font-display text-[clamp(2.9rem,6vw,5.2rem)] font-800 leading-[1.04] tracking-[-0.055em] text-white"
               >
                 I build{' '}
                 <span className="grad-teal">systems</span>{' '}
@@ -184,17 +133,17 @@ const Home = () => {
               <motion.div variants={fadeUp} className="flex flex-wrap gap-3 pt-2">
                 <Link
                   to="/portfolio"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-body font-600 text-sm text-[#080d1a] transition-all duration-300"
+                  className="liquid-primary-btn inline-flex items-center gap-2 px-6 py-3 rounded-xl font-body font-600 text-sm transition-all duration-300"
                   style={{
-                    background: 'linear-gradient(135deg, #00d4aa, #22d3ee)',
-                    boxShadow: '0 4px 24px rgba(0,212,170,0.25)',
+                    background: 'linear-gradient(120deg, #c1fff5, #accbff, #c7bdff)',
+                    boxShadow: '0 12px 32px rgba(118,158,242,0.23)',
                   }}
                 >
                   See all projects <ArrowRight size={14} />
                 </Link>
                 <Link
                   to="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-body font-500 text-sm text-white border border-white/10 bg-white/5 hover:bg-white/10 hover:border-[#00d4aa]/30 transition-all duration-300"
+                  className="liquid-secondary-btn inline-flex items-center gap-2 px-6 py-3 rounded-xl font-body font-500 text-sm text-white transition-all duration-300"
                 >
                   Start a project
                 </Link>
@@ -210,8 +159,8 @@ const Home = () => {
             </motion.div>
 
             {/* Right: terminal visual */}
-            <div className="hidden lg:block">
-              <TerminalVisual prefersReduced={prefersReduced} />
+            <div className="relative mt-3 lg:mt-0">
+              <LiquidShowcase prefersReduced={prefersReduced} />
             </div>
           </div>
         </div>
@@ -270,10 +219,10 @@ const Home = () => {
           <motion.div variants={fadeUp} className="flex flex-wrap gap-3 justify-center">
             <Link
               to="/contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-body font-600 text-sm text-[#080d1a] transition-all duration-300"
+              className="liquid-primary-btn inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-body font-600 text-sm transition-all duration-300"
               style={{
-                background: 'linear-gradient(135deg, #00d4aa, #22d3ee)',
-                boxShadow: '0 4px 24px rgba(0,212,170,0.25)',
+                background: 'linear-gradient(120deg, #c1fff5, #accbff, #c7bdff)',
+                boxShadow: '0 12px 32px rgba(118,158,242,0.23)',
               }}
             >
               Get in touch <ArrowRight size={14} />
@@ -282,7 +231,7 @@ const Home = () => {
               href="https://github.com/mbingsdk"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-body font-500 text-sm text-white border border-white/10 bg-white/5 hover:bg-white/10 transition-all duration-300"
+              className="liquid-secondary-btn inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-body font-500 text-sm text-white transition-all duration-300"
             >
               Browse GitHub
             </a>

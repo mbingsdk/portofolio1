@@ -32,7 +32,11 @@ function AppInner() {
     <>
       <CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)} />
 
-      <div className="min-h-screen" style={{ background: '#080d1a', color: '#f0f4ff' }}>
+      <div className="site-shell" style={{ color: '#f6f8ff' }}>
+        <div className="liquid-backdrop" aria-hidden="true">
+          <span className="liquid-backdrop__light liquid-backdrop__light--a" />
+          <span className="liquid-backdrop__light liquid-backdrop__light--b" />
+        </div>
         <Navbar darkMode={true} onOpenPalette={() => setPaletteOpen(true)} />
         <ScrollToTop />
         <main>
@@ -58,7 +62,7 @@ function App() {
   // Force dark mode
   useEffect(() => {
     document.documentElement.classList.add('dark');
-    document.body.style.background = '#080d1a';
+    document.body.style.background = '#080d20';
   }, []);
 
   // Cursor glow (desktop only, respects reduced motion)

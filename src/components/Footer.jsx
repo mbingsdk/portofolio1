@@ -5,7 +5,7 @@ import { FaXTwitter } from 'react-icons/fa6';
 import Logo from './Logo';
 
 const Footer = () => (
-  <footer className="relative mt-24 border-t border-white/5 overflow-hidden">
+  <footer className="liquid-footer relative mt-24 border-t overflow-hidden">
     {/* Background glow */}
     <div className="absolute inset-0 pointer-events-none">
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-48 rounded-full bg-[#00d4aa]/5 blur-3xl" />

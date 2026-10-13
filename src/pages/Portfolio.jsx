@@ -9,14 +9,14 @@ const TiltCard = ({ children, className = '' }) => {
 
   const handleMouseMove = useCallback((e) => {
     const card = ref.current;
-    if (!card) return;
+    if (!card || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
-    const rotateY = ((x - centerX) / centerX) * 8;
-    const rotateX = ((centerY - y) / centerY) * 8;
+    const rotateY = ((x - centerX) / centerX) * 3;
+    const rotateX = ((centerY - y) / centerY) * 3;
     card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px)`;
     card.style.transition = 'transform 0.1s ease-out';
   }, []);
@@ -88,7 +88,7 @@ const ProjectCard = ({ project, i }) => {
       custom={i}
     >
       <TiltCard>
-        <div className="relative rounded-2xl overflow-hidden glass border border-white/8 hover:border-[#00d4aa]/20 transition-all duration-300 group shimmer h-full flex flex-col">
+        <div className="liquid-project-card relative overflow-hidden glass transition-all duration-500 group h-full flex flex-col">
 
           {/* Image area */}
           <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#0d1530] to-[#111d3c]">
@@ -215,7 +215,7 @@ const Portfolio = () => {
 
         {/* Grid */}
         {loading ? (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 6 }).map((_, i) => (
               <div key={i} className="rounded-2xl glass border border-white/5 h-72 animate-pulse" />
             ))}
@@ -225,7 +225,7 @@ const Portfolio = () => {
             variants={staggerContainer(0.08)}
             initial="hidden" whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {projects.map((project, i) => (
               <ProjectCard key={i} project={project} i={i} />

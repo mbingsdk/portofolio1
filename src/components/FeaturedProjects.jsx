@@ -105,9 +105,9 @@ const ProjectCard = ({ project, index }) => {
   return (
     <motion.div variants={fadeUp} custom={index}>
       <div
-        className="relative rounded-2xl overflow-hidden border transition-all duration-500"
+        className="liquid-panel relative rounded-3xl overflow-hidden border transition-all duration-500"
         style={{
-          background: 'rgba(13,21,48,0.7)',
+          background: 'linear-gradient(145deg, rgba(237,245,255,0.14), rgba(139,155,210,0.075))',
           borderColor: expanded ? `${project.accentColor}30` : 'rgba(255,255,255,0.06)',
           backdropFilter: 'blur(20px)',
           boxShadow: expanded ? `0 0 60px ${project.accentColor}08` : 'none',
